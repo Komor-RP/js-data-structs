@@ -18,5 +18,6 @@
   "homepage": "https://github.com/Komor-RP/js-data-structs#readme",
   "devDependencies": {
     "mocha": "^6.0.0"
-  }
+  },
+  "dependencies": {}
 }

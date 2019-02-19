@@ -1,4 +1,5 @@
 let {Stack} = require('../stack');
+let {Queue} = require('../queue');
 let assert = require('assert');
 
 describe('Stack', function() {
@@ -9,7 +10,7 @@ describe('Stack', function() {
     
     describe('constructor', function() {
         
-        it('stores array information into object', function() {
+        it('stores constructor information into object', function() {
             assert.deepEqual(a.stack, [1, 2, 3]);
         });
     });
@@ -48,3 +49,44 @@ describe('Stack', function() {
     });
 
 });
+
+describe('Queue', function() {
+    let a;
+    beforeEach(function() {
+        a = new Queue(23, 57, 36, 24);
+    });
+
+    describe('constructor', function() {
+        it('stores constructor information into object', function() {
+            assert.deepEqual(a.queue, [23, 57, 36, 24]);
+        });
+    });
+
+    describe('enqueue()', function() {
+        it('adds new items to the end', function() {
+            a.enqueue(57);
+            assert.deepEqual(a.queue, [23, 57, 36, 24, 57]);
+
+            a.enqueue(99);
+            assert.deepEqual(a.queue, [23, 57, 36, 24, 57, 99]);
+        });
+
+        it('works with other data types and objects', function() {
+            a.enqueue("hello");
+            assert.deepEqual(a.queue, [23, 57, 36, 24, "hello"]);
+
+            a.enqueue([1, 2]);
+            assert.deepEqual(a.queue, [23, 57, 36, 24, "hello", [1, 2]]);
+        });
+    });
+
+    describe('dequeue()', function() {
+        it('removes item from the beginning', function() {
+            a.dequeue();
+            assert.deepEqual(a.queue, [57, 36, 24]);
+
+            a.dequeue();
+            assert.deepEqual(a.queue, [36, 24]);
+        });
+    })
+})
