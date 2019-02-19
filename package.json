@@ -1,0 +1,22 @@
+{
+  "name": "js-data-structs",
+  "version": "1.0.0",
+  "description": "Building data structures with Javascript",
+  "main": "stack.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Komor-RP/js-data-structs.git"
+  },
+  "author": "Fan Huang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Komor-RP/js-data-structs/issues"
+  },
+  "homepage": "https://github.com/Komor-RP/js-data-structs#readme",
+  "devDependencies": {
+    "mocha": "^6.0.0"
+  }
+}
