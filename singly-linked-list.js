@@ -5,7 +5,7 @@ class Node {
     }
 }
 
-class LinkedList {
+class SinglyLinkedList {
     constructor() {
         this.head = null;
     }
@@ -49,7 +49,7 @@ class LinkedList {
                 if (prior) {
                     prior.next = current.next;
                 } else {
-                    this.head = null;
+                    this.head = this.head.next;
                 }
                 
                 // set current to null
@@ -63,7 +63,8 @@ class LinkedList {
 
 }
 
+
 module.exports = {
-    LinkedList,
+    SinglyLinkedList,
     Node
 }

@@ -1,6 +1,7 @@
 let {Stack} = require('../stack');
 let {Queue} = require('../queue');
-let {LinkedList, Node} = require('../linked-list');
+let {SinglyLinkedList, Node} = require('../singly-linked-list');
+let {DoublyLinkedList, DoubleNode} = require('../doubly-linked-list');
 
 let assert = require('assert');
 
@@ -98,7 +99,7 @@ describe('Singly-linked Linked List', function() {
     let a;
     let newNode;
     beforeEach(function() {
-        a = new LinkedList();
+        a = new SinglyLinkedList();
         newNode = {
             head: null
         };
@@ -186,6 +187,174 @@ describe('Singly-linked Linked List', function() {
 
             assert.deepEqual(a, updatedList);
         });
+
+        it("doesn't remove if it can't find a match", function() {
+            let secondNode = new Node(6, null);
+            let firstNode = new Node(5, secondNode);
+            let updatedList = {
+                head: firstNode
+            }
+            a.add(5);
+            a.add(6);
+            a.remove(10);
+
+            assert.deepEqual(a, updatedList);
+        });
+
+        it('only removes the first instance', function() {
+            let firstNode = new Node(5, null);
+            let updatedList = {
+                head: firstNode
+            }
+            a.add(5);
+            a.add(5);
+            a.remove(5);
+
+            assert.deepEqual(a, updatedList);
+        });
     });
+
+});
+
+
+describe('Doubly Linked Linked List', function() {
+    let a;
+    beforeEach(function() {
+        a = new DoublyLinkedList();
+
+    });
+
+    describe('constructor', function(){
+        it('adds a null head and a null tail', function() {
+            let updatedList = {
+                head: null,
+                tail: null
+            };
+
+            assert.deepEqual(a, updatedList);
+        });
+    });
+
+    describe('add()', function() {
+        it('adds the first node and sets as the head and tail', function() {
+            let firstNode = new DoubleNode(5, null, null);
+            let updatedList = {
+                head: firstNode,
+                tail: firstNode
+            }
+
+            a.add(5);
+            assert.deepEqual(a, updatedList);
+        });
+
+        it('adds the second node and sets as the tail', function() {
+            let secondNode = new DoubleNode(6, null, null);
+            let firstNode = new DoubleNode(5, null, secondNode);
+            secondNode.prev = firstNode;
+
+            let updatedList = {
+                head: firstNode,
+                tail: secondNode
+            }
+            a.add(5);
+            a.add(6);
+
+            assert.deepEqual(a. updatedList);
+        });
+
+        it('adds the third node and sets as the tail', function() {
+            let thirdNode = new DoubleNode(7, null, null);
+            let secondNode = new DoubleNode(6, null, thirdNode);
+            thirdNode.prev = secondNode;
+            let firstNode = new DoubleNode(5, null, secondNode);
+            secondNode.prev = firstNode;
+
+            let updatedList = {
+                head: firstNode,
+                tail: thirdNode
+            }
+            a.add(5);
+            a.add(6);
+            a.add(7);
+
+            
+            assert.deepEqual(a, updatedList);
+        });
+    });
+
+    describe('remove()', function() {
+        it('removes the first node', function() {
+            let updatedList = {
+                head: null,
+                tail: null
+            }
+            a.add(5);
+            a.remove(5);
+
+            assert.deepEqual(a. updatedList);
+        });
+
+        it('removes the second node', function() {
+            let firstNode = new DoubleNode(5, null, null);
+
+            let updatedList = {
+                head: firstNode,
+                tail: firstNode
+            }
+            a.add(5);
+            a.add(6);
+            a.remove(6);
+
+            assert.deepEqual(a, updatedList);
+        });
+
+        it('removes the third node', function() {
+            let secondNode = new DoubleNode(6, null, null);
+            let firstNode = new DoubleNode(5, null, secondNode);
+            secondNode.prev = firstNode;
+
+            let updatedList = {
+                head: firstNode,
+                tail: secondNode
+            }
+            a.add(5);
+            a.add(6);
+            a.add(7);
+            a.remove(7);
+
+            assert.deepEqual(a, updatedList);
+        });
+
+        it("doesn't remove if it can't find a match", function() {
+            let secondNode = new DoubleNode(6, null, null);
+            let firstNode = new DoubleNode(5, null, secondNode);
+            secondNode.prev = firstNode;
+
+            let updatedList = {
+                head: firstNode,
+                tail: secondNode
+            }
+            a.add(5);
+            a.add(6);
+            a.remove(10);
+            
+            assert.deepEqual(a, updatedList);
+        });
+
+        it('only removes the first instance', function() {
+            let firstNode = new Node(5, null, null);
+            let updatedList = {
+                head: firstNode,
+                tail: null
+            }
+            a.add(5);
+            a.add(5);
+            a.remove(5);
+
+            assert.deepEqual(a, updatedList);
+        });
+        
+    });
+
 
 });
