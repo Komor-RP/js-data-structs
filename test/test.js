@@ -342,10 +342,10 @@ describe('Doubly Linked Linked List', function() {
         });
 
         it('only removes the first instance', function() {
-            let firstNode = new Node(5, null, null);
+            let firstNode = new DoubleNode(5, null, null);
             let updatedList = {
                 head: firstNode,
-                tail: null
+                tail: firstNode
             }
             a.add(5);
             a.add(5);

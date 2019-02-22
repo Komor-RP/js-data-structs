@@ -15,12 +15,15 @@ class SinglyLinkedList {
             throw new TypeError("Values cannot be null");
         }
 
+        // finds the head and sets it if it doesn't exist
         if (this.head) {
 
+            // finds the end value by traversing the linked list
+            // and attaches a new Node onto it
             let current = this.head;
             while (current) {
 
-                if (current.next == null) {
+                if (current.next === null) {
                     current.next = new Node(a, null);
                     break;
                 }
@@ -43,7 +46,7 @@ class SinglyLinkedList {
         let prior;
 
         while (current) {
-            if (current.val == a) {
+            if (current.val === a) {
 
                 // set prior.next to current.next
                 if (prior) {
